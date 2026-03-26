@@ -35,15 +35,15 @@ const LOADED_MATCHES: any[] = Object.entries(RAW_DATA_MODULES).map(([path, mod],
 
 const TEAM_CONFIG: Record<string, { name: string; short: string; color: string; accent: string; bg: string }> = {
     RCB:  { name: "Royal Challengers Bengaluru", short: "RCB",  color: "#EC1C24", accent: "#FFD700", bg: "rgba(236,28,36,0.15)"   },
-    SRH:  { name: "Sunrisers Hyderabad",          short: "SRH",  color: "#FF822A", accent: "#000000", bg: "rgba(255,130,42,0.15)"  },
-    MI:   { name: "Mumbai Indians",               short: "MI",   color: "#004BA0", accent: "#D4AF37", bg: "rgba(0,75,160,0.15)"    },
-    CSK:  { name: "Chennai Super Kings",           short: "CSK",  color: "#FFCB05", accent: "#0081C9", bg: "rgba(255,203,5,0.15)"   },
-    KKR:  { name: "Kolkata Knight Riders",         short: "KKR",  color: "#3A225D", accent: "#D4AF37", bg: "rgba(58,34,93,0.15)"    },
-    DC:   { name: "Delhi Capitals",                short: "DC",   color: "#0078BC", accent: "#EF1C25", bg: "rgba(0,120,188,0.15)"   },
-    GT:   { name: "Gujarat Titans",                short: "GT",   color: "#A0A0A0", accent: "#C8A84B", bg: "rgba(160,160,160,0.15)" },
-    RR:   { name: "Rajasthan Royals",              short: "RR",   color: "#EA1A85", accent: "#254AA5", bg: "rgba(234,26,133,0.15)"  },
-    PBKS: { name: "Punjab Kings",                  short: "PBKS", color: "#ED1F27", accent: "#A7A9AC", bg: "rgba(237,31,39,0.15)"   },
-    LSG:  { name: "Lucknow Super Giants",          short: "LSG",  color: "#A72B55", accent: "#00BFFF", bg: "rgba(167,43,85,0.15)"   },
+    SRH:  { name: "Sunrisers Hyderabad",         short: "SRH",  color: "#FF822A", accent: "#000000", bg: "rgba(255,130,42,0.15)"  },
+    MI:   { name: "Mumbai Indians",              short: "MI",   color: "#004BA0", accent: "#D4AF37", bg: "rgba(0,75,160,0.15)"    },
+    CSK:  { name: "Chennai Super Kings",         short: "CSK",  color: "#FFCB05", accent: "#0081C9", bg: "rgba(255,203,5,0.15)"   },
+    KKR:  { name: "Kolkata Knight Riders",       short: "KKR",  color: "#3A225D", accent: "#D4AF37", bg: "rgba(58,34,93,0.15)"    },
+    DC:   { name: "Delhi Capitals",              short: "DC",   color: "#0078BC", accent: "#EF1C25", bg: "rgba(0,120,188,0.15)"   },
+    GT:   { name: "Gujarat Titans",              short: "GT",   color: "#A0A0A0", accent: "#C8A84B", bg: "rgba(160,160,160,0.15)" },
+    RR:   { name: "Rajasthan Royals",            short: "RR",   color: "#EA1A85", accent: "#254AA5", bg: "rgba(234,26,133,0.15)"  },
+    PBKS: { name: "Punjab Kings",                short: "PBKS", color: "#ED1F27", accent: "#A7A9AC", bg: "rgba(237,31,39,0.15)"   },
+    LSG:  { name: "Lucknow Super Giants",        short: "LSG",  color: "#A72B55", accent: "#00BFFF", bg: "rgba(167,43,85,0.15)"   },
 };
 
 function getTeam(key: string) {
@@ -96,6 +96,40 @@ function resolveTeamName(
 // UTILITY
 // ─────────────────────────────────────────────────────────────────────────────
 
+function cleanVenueName(venue: string) {
+    if (!venue) return "";
+    return venue.split(",")[0].trim();
+}
+
+function TeamLogo({ team, size = 32, className = "", style = {} }: { team: any, size?: number, className?: string, style?: React.CSSProperties }) {
+    const [imgSrc, setImgSrc] = useState(`/logos/${team.short}.png`);
+    const [failed, setFailed] = useState(false);
+
+    if (failed) {
+        return (
+            <div className={className} style={{ width: size, height: size, borderRadius: "50%", background: team.bg, border: `1px solid ${team.color}40`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: Math.max(10, size * 0.4), color: team.color, flexShrink: 0, ...style }}>
+                {team.short[0]}
+            </div>
+        );
+    }
+
+    return (
+        <img
+            src={imgSrc}
+            alt={team.short}
+            className={className}
+            style={{ width: size, height: size, objectFit: "contain", flexShrink: 0, ...style }}
+            onError={() => {
+                if (imgSrc.endsWith(".png")) {
+                    setImgSrc(`/logos/${team.short}.jpg`);
+                } else {
+                    setFailed(true);
+                }
+            }}
+        />
+    );
+}
+
 const ciRiskColor: Record<string, string> = {
     low: "#22c55e", medium: "#f59e0b", high: "#ef4444",
 };
@@ -130,8 +164,6 @@ function useCountUp(target: number, duration = 900) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCORE CURVE CHART
-// FIX 2: Legend always horizontal; chart min-height so it's not tiny on mobile
-// FIX 5: Phase colors applied PER-SEGMENT so color changes AT the dotted line
 // ─────────────────────────────────────────────────────────────────────────────
 
 function ScoreCurveChart({
@@ -192,13 +224,13 @@ function ScoreCurveChart({
             <rect x={PAD_L + (6/20)*chartW}          y={0} width={(9/20)*chartW}  height={chartH} fill="rgba(99,102,241,0.05)" />
             <rect x={PAD_L + (15/20)*chartW}         y={0} width={(5/20)*chartW}  height={chartH} fill="rgba(239,68,68,0.05)" />
 
-            {/* Phase dividers — colored to match the phase they BEGIN */}
+            {/* Phase dividers */}
             <line x1={toX(ppEnd,  n)} y1={0} x2={toX(ppEnd,  n)} y2={chartH}
                 stroke="#22c55e" strokeWidth="1.5" strokeDasharray="3,3" opacity="0.6" />
             <line x1={toX(midEnd, n)} y1={0} x2={toX(midEnd, n)} y2={chartH}
                 stroke="#ef4444" strokeWidth="1.5" strokeDasharray="3,3" opacity="0.6" />
 
-            {/* X labels — every over */}
+            {/* X labels */}
             {battingData.map((item, idx) => {
                 const over = item.over ?? (idx + 1);
                 return (
@@ -209,14 +241,14 @@ function ScoreCurveChart({
                 );
             })}
 
-            {/* Chasing line — solid, team color */}
+            {/* Chasing line */}
             {chasingData && chasingData.length > 1 && (
                 <polyline points={pts(chasingData)} fill="none"
                     stroke={chasingColor ?? "#6366f1"} strokeWidth="1.4"
                     strokeLinejoin="round" opacity="0.7" />
             )}
 
-            {/* Batting line — solid, team color */}
+            {/* Batting line */}
             {battingData.length > 1 && (
                 <polyline points={pts(battingData)} fill="none"
                     stroke={battingColor} strokeWidth="1.8"
@@ -267,8 +299,8 @@ function CIBar({ pred, displayScore, teamColor, outsideCI }: {
                 }} />
 
                 <div style={{
-                    position:     "absolute",
-                    left:         `${dotPct}%`,
+                    position:       "absolute",
+                    left:           `${dotPct}%`,
                     top:          -3,
                     width:        12,
                     height:       12,
@@ -287,7 +319,6 @@ function CIBar({ pred, displayScore, teamColor, outsideCI }: {
                 <span>{displayHi}</span>
             </div>
 
-            {/* FIX 4: DL notice — high-contrast box so it's always visible */}
             {outsideCI && (
                 <div style={{
                     marginTop: 10,
@@ -446,7 +477,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                     from { opacity: 0; transform: translateY(10px); }
                     to   { opacity: 1; transform: translateY(0); }
                 }
-                /* FIX 1: Sticky header — force team names onto one line, shrink font */
                 .sticky-team-row {
                     display: flex;
                     align-items: center;
@@ -471,7 +501,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                     .hero-venue   { display: none !important; }
                     .tab-btn      { padding: 10px 8px !important; font-size: 11px !important; }
                 }
-                /* FIX 2: Legend always horizontal */
                 .score-curve-legend {
                     display: flex !important;
                     flex-direction: row !important;
@@ -480,7 +509,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                     align-items: center;
                     font-size: 9px;
                 }
-                /* FIX 3: Venue history table — constrain columns properly */
                 .venue-row {
                     display: grid;
                     grid-template-columns: 64px 1fr auto auto;
@@ -517,7 +545,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                     ← Matches
                 </button>
 
-                {/* FIX 1: Team names always on one line using nowrap + smaller font */}
                 {headerStuck && (
                     <div className="sticky-team-row">
                         <span className="sticky-team-name" style={{ color: t1.color }}>{t1.short}</span>
@@ -527,7 +554,7 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                             borderRadius: 6, fontSize: 10, opacity: 0.6,
                             overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                             maxWidth: 120, flexShrink: 1 }}>
-                            {matchData.match_info.venue}
+                            {cleanVenueName(matchData.match_info.venue)}
                         </span>
                     </div>
                 )}
@@ -561,18 +588,17 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                                     <div style={{ fontSize: 9, color: "#555", letterSpacing: "0.1em",
                                         textTransform: "uppercase", marginBottom: 3 }}>Venue</div>
                                     <div style={{ fontSize: 11, fontWeight: 600, color: "#bbb", maxWidth: 120 }}>
-                                        {matchData.match_info.venue}
+                                        {cleanVenueName(matchData.match_info.venue)}
                                     </div>
                                 </div>
                             ) : (
                                 <div key={item.short} style={{ textAlign: "center" }}>
-                                    <div className="hero-avatar" style={{ width: 64, height: 64, borderRadius: "50%",
-                                        background: item.bg, border: `2px solid ${item.color}40`,
-                                        display: "flex", alignItems: "center", justifyContent: "center",
-                                        fontSize: 22, fontWeight: 900, color: item.color,
-                                        margin: "0 auto 6px", boxShadow: `0 0 20px ${item.color}28` }}>
-                                        {item.short[0]}
-                                    </div>
+                                    <TeamLogo 
+                                        team={item} 
+                                        size={64} 
+                                        className="hero-avatar"
+                                        style={{ margin: "0 auto 6px", filter: `drop-shadow(0 0 10px ${item.color}40)` }} 
+                                    />
                                     <div style={{ fontSize: 15, fontWeight: 700, color: item.color }}>{item.short}</div>
                                     <div style={{ fontSize: 9, color: "#555", marginTop: 1 }}>
                                         {item.name.split(" ").slice(-1)[0]}
@@ -695,7 +721,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                                             Projected cumulative runs · X = over, Y = runs
                                         </div>
                                     </div>
-                                    {/* FIX 2: Legend always in a horizontal row */}
                                     <div className="score-curve-legend">
                                         <span style={{ color: batFirst.color }}>── {batFirst.short}</span>
                                         {chasingCurve.length > 0 && (
@@ -732,12 +757,7 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                                         <div key={team.short} style={{ background: `${team.color}0a`,
                                             border: `1px solid ${team.color}25`, borderRadius: 12, padding: 12 }}>
                                             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                                                <div style={{ width: 26, height: 26, borderRadius: "50%",
-                                                    background: team.bg, border: `1px solid ${team.color}40`,
-                                                    display: "flex", alignItems: "center", justifyContent: "center",
-                                                    fontSize: 9, fontWeight: 800, color: team.color, flexShrink: 0 }}>
-                                                    {team.short[0]}
-                                                </div>
+                                                <TeamLogo team={team} size={26} />
                                                 <div style={{ minWidth: 0, flex: 1 }}>
                                                     <div style={{ fontSize: 12, fontWeight: 700 }}>{ip.player_name}</div>
                                                     <div style={{ fontSize: 9, color: team.color + "aa" }}>{team.name}</div>
@@ -774,7 +794,7 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: 10 }}>
                                 {([
                                     { label: "Score MAE",   val: `±${sc.model_confidence?.m1_mae_val} runs`, hint: "Avg error" },
-                                    { label: "Chase MAE",   val: `±${sc.model_confidence?.m2_mae_val}`,       hint: "Run diff" },
+                                    { label: "Chase MAE",   val: `±${sc.model_confidence?.m2_mae_val}`,        hint: "Run diff" },
                                     { label: "Brier Score", val: sc.model_confidence?.m3_brier_val,            hint: "Perfect=0" },
                                     { label: "Log-Loss",    val: sc.model_confidence?.m3_logloss_val,          hint: "Calibration" },
                                 ] as { label: string; val: any; hint: string }[]).map(({ label, val, hint }) => (
@@ -913,9 +933,9 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                                     🪙 Toss Advantage at This Venue
                                 </div>
                                 {tossStats ? (() => {
-                                    const batPct   = tossStats.bat_first?.pct   ?? Math.round((tossStats.choose_bat?.win_pct   ?? 0.5) * 100);
+                                    const batPct   = tossStats.bat_first?.pct    ?? Math.round((tossStats.choose_bat?.win_pct    ?? 0.5) * 100);
                                     const fieldPct = tossStats.field_first?.pct ?? Math.round((tossStats.choose_field?.win_pct ?? 0.5) * 100);
-                                    const batN     = tossStats.bat_first?.matches   ?? tossStats.choose_bat?.total   ?? "?";
+                                    const batN     = tossStats.bat_first?.matches    ?? tossStats.choose_bat?.total    ?? "?";
                                     const fieldN   = tossStats.field_first?.matches ?? tossStats.choose_field?.total ?? "?";
                                     const total    = tossStats.sample_size ?? "?";
                                     return (
@@ -992,7 +1012,6 @@ function MatchDetailPage({ matchData, team1Key, team2Key, onBack }: {
                             </div>
                         </div>
 
-                        {/* FIX 3: Venue history — proper grid layout per row */}
                         {sc.venue_history?.length > 0 && (
                             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 16,
                                 border: "1px solid rgba(255,255,255,0.07)", padding: 16 }}>
@@ -1177,70 +1196,65 @@ function MatchListPage({ onSelectMatch }: { onSelectMatch: (m: any) => void }) {
                         const t2 = getTeam(m.team2);
                         return (
                             <div key={m.id} onClick={() => onSelectMatch(m)}
-                                style={{ background: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(255,255,255,0.07)", borderRadius: 12,
+                                style={{
+                                    background: "rgba(255,255,255,0.03)",
+                                    border: "1px solid rgba(255,255,255,0.07)", 
+                                    borderRadius: 12,
                                     padding: "12px 14px", cursor: "pointer",
-                                    display: "flex", alignItems: "center", gap: 0,
-                                    transition: "border-color 0.2s", flexWrap: "wrap" }}
+                                    transition: "border-color 0.2s",
+                                    display: "flex", alignItems: "center", gap: 12, 
+                                    justifyContent: "space-between", flexWrap: "wrap"
+                                }}
                                 onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                                 onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)")}>
 
-                                <div style={{ minWidth: 30, paddingRight: 12, marginRight: 12,
-                                    borderRight: "1px solid rgba(255,255,255,0.08)",
-                                    fontSize: 11, fontWeight: 700, color: "#333",
-                                    fontFamily: "'Space Mono',monospace", textAlign: "center", flexShrink: 0 }}>
-                                    {m.match_number}
-                                </div>
-
-                                <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", minWidth: 0 }}>
-                                    <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 160 }}>
-                                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                                            <div style={{ width: 32, height: 32, borderRadius: "50%",
-                                                background: t1.bg, border: `2px solid ${t1.color}40`,
-                                                display: "flex", alignItems: "center", justifyContent: "center",
-                                                fontWeight: 800, fontSize: 11, color: t1.color, flexShrink: 0 }}>
-                                                {t1.short[0]}
-                                            </div>
-                                            <span style={{ fontSize: 13, fontWeight: 700, color: t1.color, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.team1}</span>
-                                        </div>
-                                        <span style={{ color: "#333", fontSize: 11, flexShrink: 0 }}>vs</span>
-                                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                                            <span style={{ fontSize: 13, fontWeight: 700, color: t2.color, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.team2}</span>
-                                            <div style={{ width: 32, height: 32, borderRadius: "50%",
-                                                background: t2.bg, border: `2px solid ${t2.color}40`,
-                                                display: "flex", alignItems: "center", justifyContent: "center",
-                                                fontWeight: 800, fontSize: 11, color: t2.color, flexShrink: 0 }}>
-                                                {t2.short[0]}
-                                            </div>
-                                        </div>
+                                {/* LEFT SECTION: Flex 1 */}
+                                <div style={{ flex: "1 1 0%", minWidth: 200, display: "flex", alignItems: "center", gap: 12 }}>
+                                    <div style={{ minWidth: 30, paddingRight: 12,
+                                        borderRight: "1px solid rgba(255,255,255,0.08)",
+                                        fontSize: 11, fontWeight: 700, color: "#333",
+                                        fontFamily: "'Space Mono',monospace", textAlign: "center", flexShrink: 0 }}>
+                                        {m.match_number}
                                     </div>
 
-                                    {m.team1_wp != null && (
-                                        <div style={{ width: 130, flexShrink: 0 }}>
-                                            <div style={{ display: "grid", gridTemplateColumns: "30px 1fr 30px",
-                                                alignItems: "center", gap: 4, fontSize: 9, fontFamily: "monospace" }}>
-                                                <span style={{ color: t1.color }}>{Math.round(m.team1_wp * 100)}%</span>
-                                                <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
-                                                    <div style={{ display: "flex", height: "100%" }}>
-                                                        <div style={{ width: `${m.team1_wp * 100}%`, background: t1.color, borderRadius: "2px 0 0 2px" }} />
-                                                        <div style={{ flex: 1, background: t2.color, borderRadius: "0 2px 2px 0" }} />
-                                                    </div>
+                                    <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
+                                        <TeamLogo team={t1} size={32} />
+                                        <span style={{ fontSize: 13, fontWeight: 700, color: t1.color, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.team1}</span>
+                                        <span style={{ color: "#333", fontSize: 11, flexShrink: 0, margin: "0 4px" }}>vs</span>
+                                        <span style={{ fontSize: 13, fontWeight: 700, color: t2.color, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.team2}</span>
+                                        <TeamLogo team={t2} size={32} />
+                                    </div>
+                                </div>
+
+                                {/* CENTER SECTION: Absolute width, pushes perfectly to the center */}
+                                {m.team1_wp != null ? (
+                                    <div style={{ width: 130, flexShrink: 0, margin: "0 auto" }}>
+                                        <div style={{ display: "grid", gridTemplateColumns: "30px 1fr 30px",
+                                            alignItems: "center", gap: 4, fontSize: 9, fontFamily: "monospace" }}>
+                                            <span style={{ color: t1.color }}>{Math.round(m.team1_wp * 100)}%</span>
+                                            <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
+                                                <div style={{ display: "flex", height: "100%" }}>
+                                                    <div style={{ width: `${m.team1_wp * 100}%`, background: t1.color, borderRadius: "2px 0 0 2px" }} />
+                                                    <div style={{ flex: 1, background: t2.color, borderRadius: "0 2px 2px 0" }} />
                                                 </div>
-                                                <span style={{ color: t2.color, textAlign: "right" }}>{Math.round(m.team2_wp * 100)}%</span>
                                             </div>
+                                            <span style={{ color: t2.color, textAlign: "right" }}>{Math.round(m.team2_wp * 100)}%</span>
                                         </div>
-                                    )}
-
-                                    <div style={{ textAlign: "right", minWidth: 90, flexShrink: 0 }}>
-                                        <div style={{ fontSize: 10, color: "#666" }}>{m.date}</div>
-                                        <div style={{ fontSize: 9, color: "#444", marginTop: 1,
-                                            overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                            {m.venue}
-                                        </div>
-                                        <div style={{ fontSize: 9, color: "#22c55e", marginTop: 2, fontWeight: 600 }}>● Predicted</div>
                                     </div>
-                                    <div style={{ color: "#333", fontSize: 14, flexShrink: 0 }}>›</div>
+                                ) : (
+                                    <div style={{ width: 130, flexShrink: 0 }} /> // Spacer for consistency
+                                )}
+
+                                {/* RIGHT SECTION: Flex 1 */}
+                                <div style={{ flex: "1 1 0%", textAlign: "right", minWidth: 100, display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+                                    <div style={{ fontSize: 10, color: "#666" }}>{m.date}</div>
+                                    <div style={{ fontSize: 9, color: "#444", marginTop: 1,
+                                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 140 }}>
+                                        {cleanVenueName(m.venue)}
+                                    </div>
+                                    <div style={{ fontSize: 9, color: "#22c55e", marginTop: 2, fontWeight: 600 }}>● Predicted</div>
                                 </div>
+
                             </div>
                         );
                     })}
@@ -1262,30 +1276,40 @@ function MatchListPage({ onSelectMatch }: { onSelectMatch: (m: any) => void }) {
 // POINTS TABLE PAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PREDICTED_TABLE = [
-    { team: "RCB",  m: 5, w: 4, l: 1, pts: 8, nrr: "+1.24" },
-    { team: "MI",   m: 5, w: 3, l: 2, pts: 6, nrr: "+0.82" },
-    { team: "CSK",  m: 5, w: 3, l: 2, pts: 6, nrr: "+0.41" },
-    { team: "SRH",  m: 5, w: 3, l: 2, pts: 6, nrr: "-0.12" },
-    { team: "KKR",  m: 5, w: 2, l: 3, pts: 4, nrr: "+0.18" },
-    { team: "GT",   m: 5, w: 2, l: 3, pts: 4, nrr: "-0.44" },
-    { team: "DC",   m: 5, w: 2, l: 3, pts: 4, nrr: "-0.67" },
-    { team: "RR",   m: 5, w: 1, l: 4, pts: 2, nrr: "-0.98" },
-    { team: "PBKS", m: 5, w: 1, l: 4, pts: 2, nrr: "-1.02" },
-    { team: "LSG",  m: 5, w: 1, l: 4, pts: 2, nrr: "-1.41" },
-];
+// ACTUAL TABLE without NRR
 const ACTUAL_TABLE = [
-    { team: "SRH",  m: 5, w: 4, l: 1, pts: 8, nrr: "+1.41" },
-    { team: "RCB",  m: 5, w: 3, l: 2, pts: 6, nrr: "+0.92" },
-    { team: "KKR",  m: 5, w: 3, l: 2, pts: 6, nrr: "+0.54" },
-    { team: "MI",   m: 5, w: 3, l: 2, pts: 6, nrr: "+0.21" },
-    { team: "CSK",  m: 5, w: 2, l: 3, pts: 4, nrr: "+0.08" },
-    { team: "GT",   m: 5, w: 2, l: 3, pts: 4, nrr: "-0.34" },
-    { team: "DC",   m: 5, w: 2, l: 3, pts: 4, nrr: "-0.71" },
-    { team: "PBKS", m: 5, w: 2, l: 3, pts: 4, nrr: "-0.88" },
-    { team: "RR",   m: 5, w: 1, l: 4, pts: 2, nrr: "-1.14" },
-    { team: "LSG",  m: 5, w: 0, l: 5, pts: 0, nrr: "-1.67" },
+    { team: "SRH",  m: 5, w: 4, l: 1, pts: 8 },
+    { team: "RCB",  m: 5, w: 3, l: 2, pts: 6 },
+    { team: "KKR",  m: 5, w: 3, l: 2, pts: 6 },
+    { team: "MI",   m: 5, w: 3, l: 2, pts: 6 },
+    { team: "CSK",  m: 5, w: 2, l: 3, pts: 4 },
+    { team: "GT",   m: 5, w: 2, l: 3, pts: 4 },
+    { team: "DC",   m: 5, w: 2, l: 3, pts: 4 },
+    { team: "PBKS", m: 5, w: 2, l: 3, pts: 4 },
+    { team: "RR",   m: 5, w: 1, l: 4, pts: 2 },
+    { team: "LSG",  m: 5, w: 0, l: 5, pts: 0 },
 ];
+
+// Dynamically generate PREDICTED_TABLE by taking the actual table
+// and adding the predicted outcomes from the 5 newest JSON files
+const PREDICTED_TABLE = ACTUAL_TABLE.map(row => ({ ...row }));
+
+LOADED_MATCHES.slice(-5).forEach(m => {
+    if (m.team1_wp != null && m.team2_wp != null) {
+        // Find winner based on higher win probability
+        const predictedWinner = m.team1_wp >= m.team2_wp ? m.team1 : m.team2;
+        const predictedLoser  = m.team1_wp >= m.team2_wp ? m.team2 : m.team1;
+
+        const wRow = PREDICTED_TABLE.find(r => r.team === predictedWinner);
+        const lRow = PREDICTED_TABLE.find(r => r.team === predictedLoser);
+
+        if (wRow) { wRow.m += 1; wRow.w += 1; wRow.pts += 2; }
+        if (lRow) { lRow.m += 1; lRow.l += 1; }
+    }
+});
+
+// Re-sort predicted table by Points then Wins (since NRR is removed)
+PREDICTED_TABLE.sort((a, b) => b.pts - a.pts || b.w - a.w);
 
 function PointsTablePage() {
     return (
@@ -1313,15 +1337,32 @@ function PointsTablePage() {
                                 <div style={{ fontSize: 10, color: "#444", marginTop: 2 }}>{subtitle}</div>
                             </div>
                             <div style={{ padding: "0 6px", overflowX: "auto" }}>
+                                
+                                {/* Header Row Added Here */}
+                                <div style={{
+                                    display: "grid",
+                                    gridTemplateColumns: "20px 1fr 30px 30px 30px 38px",
+                                    padding: "8px 10px", alignItems: "center",
+                                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                                    marginBottom: 8, fontSize: 10, color: "#888", 
+                                    fontWeight: 600, textTransform: "uppercase"
+                                }}>
+                                    <span>#</span>
+                                    <span>Team</span>
+                                    <span style={{ textAlign: "center" }}>M</span>
+                                    <span style={{ textAlign: "center" }}>W</span>
+                                    <span style={{ textAlign: "center" }}>L</span>
+                                    <span style={{ textAlign: "center" }}>Pts</span>
+                                </div>
+
                                 {data.map((row, i) => {
-                                    const t      = TEAM_CONFIG[row.team];
+                                    const t      = TEAM_CONFIG[row.team] ?? getTeam(row.team);
                                     const tc     = t?.color ?? "#888";
-                                    const tb     = t?.bg    ?? `${tc}20`;
                                     const isTop4 = i < 4;
                                     return (
                                         <div key={row.team} style={{
                                             display: "grid",
-                                            gridTemplateColumns: "20px 1fr 30px 30px 30px 38px 48px",
+                                            gridTemplateColumns: "20px 1fr 30px 30px 30px 38px",
                                             padding: "8px 10px", alignItems: "center",
                                             borderRadius: 8, marginBottom: 2,
                                             background: isTop4 ? `${ac}08` : "transparent",
@@ -1330,10 +1371,7 @@ function PointsTablePage() {
                                             <span style={{ fontSize: 10, color: isTop4 ? ac : "#555",
                                                 fontWeight: isTop4 ? 700 : 400 }}>{i + 1}</span>
                                             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                                                <div style={{ width: 22, height: 22, borderRadius: "50%",
-                                                    background: tb, border: `1px solid ${tc}30`,
-                                                    display: "flex", alignItems: "center", justifyContent: "center",
-                                                    fontSize: 8, fontWeight: 800, color: tc, flexShrink: 0 }}>{row.team[0]}</div>
+                                                <TeamLogo team={t} size={22} />
                                                 <span style={{ fontSize: 11, fontWeight: isTop4 ? 600 : 400, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis" }}>{row.team}</span>
                                             </div>
                                             {[row.m, row.w, row.l].map((v, vi) => (
@@ -1342,11 +1380,6 @@ function PointsTablePage() {
                                             <span style={{ textAlign: "center", fontSize: 12, fontWeight: 700,
                                                 color: isTop4 ? ac : "#888", fontFamily: "'Space Mono',monospace" }}>
                                                 {row.pts}
-                                            </span>
-                                            <span style={{ textAlign: "right", fontSize: 9,
-                                                color: row.nrr.startsWith("+") ? "#22c55e" : "#ef4444",
-                                                fontFamily: "monospace" }}>
-                                                {row.nrr}
                                             </span>
                                         </div>
                                     );
