@@ -6,28 +6,49 @@ import { useState, useEffect, useRef } from "react";
 
 const RAW_DATA_MODULES = import.meta.glob("./data/*.json", { eager: true }) as Record<string, any>;
 
-const LOADED_MATCHES: any[] = Object.entries(RAW_DATA_MODULES).map(([path, mod], idx) => {
-    const data         = mod.default ?? mod;
+const LOADED_MATCHES: any[] = Object.entries(RAW_DATA_MODULES)
+  .map(([path, mod], idx) => {
+    const data = mod.default ?? mod;
     const scenarioKeys = Object.keys(data.scenarios ?? {});
-    const team1Key     = scenarioKeys[0]?.replace("_batting_first", "") ?? "TBD";
-    const team2Key     = scenarioKeys[1]?.replace("_batting_first", "") ?? "TBD";
-    const sc0          = data.scenarios[scenarioKeys[0]];
-    const wp           = sc0?.predictions?.win_probability;
-    return {
-        id:           path,
-        match_number: idx + 1,
-        date:         data.match_info?.date ?? "",
-        time:         data.match_info?.time ?? "",
-        team1:        team1Key,
-        team2:        team2Key,
-        venue:        data.match_info?.venue ?? "",
-        status:       "predicted" as const,
-        team1_wp:     wp?.team_1 ?? null,
-        team2_wp:     wp?.team_2 ?? null,
-        _raw:         data,
-    };
-});
+    const team1Key = scenarioKeys[0]?.replace("_batting_first", "") ?? "TBD";
+    const team2Key = scenarioKeys[1]?.replace("_batting_first", "") ?? "TBD";
+    const sc0 = data.scenarios[scenarioKeys[0]];
+    const wp = sc0?.predictions?.win_probability;
 
+    // 1. Extract date string from filename (e.g., "28_03_2026")
+    // This regex looks for 8 digits separated by underscores before the .json
+    const filename = path.split('/').pop() || "";
+    const dateMatch = filename.match(/(\d{2})_(\d{2})_(\d{4})/);
+    
+    let timestamp = 0;
+    if (dateMatch) {
+      const [_, day, month, year] = dateMatch;
+      // Note: month is 0-indexed in JS Date constructor (Jan = 0)
+      timestamp = new Date(Number(year), Number(month) - 1, Number(day)).getTime();
+    }
+
+    return {
+      id: path,
+      match_number: idx + 1, // We will reset this after sorting
+      date: data.match_info?.date ?? "",
+      time: data.match_info?.time ?? "",
+      team1: team1Key,
+      team2: team2Key,
+      venue: data.match_info?.venue ?? "",
+      status: "predicted" as const,
+      team1_wp: wp?.team_1 ?? null,
+      team2_wp: wp?.team_2 ?? null,
+      _timestamp: timestamp, // Temporary field for sorting
+      _raw: data,
+    };
+  })
+  // 2. Sort by the parsed timestamp (Ascending: Oldest -> Newest)
+  .sort((a, b) => a._timestamp - b._timestamp)
+  // 3. Re-assign match_number after sorting so it remains sequential (1, 2, 3...)
+  .map((match, index) => ({
+    ...match,
+    match_number: index + 1
+  }));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TEAM CONFIG
@@ -1278,16 +1299,16 @@ function MatchListPage({ onSelectMatch }: { onSelectMatch: (m: any) => void }) {
 
 // ACTUAL TABLE without NRR
 const ACTUAL_TABLE = [
-    { team: "SRH",  m: 5, w: 4, l: 1, pts: 8 },
-    { team: "RCB",  m: 5, w: 3, l: 2, pts: 6 },
-    { team: "KKR",  m: 5, w: 3, l: 2, pts: 6 },
-    { team: "MI",   m: 5, w: 3, l: 2, pts: 6 },
-    { team: "CSK",  m: 5, w: 2, l: 3, pts: 4 },
-    { team: "GT",   m: 5, w: 2, l: 3, pts: 4 },
-    { team: "DC",   m: 5, w: 2, l: 3, pts: 4 },
-    { team: "PBKS", m: 5, w: 2, l: 3, pts: 4 },
-    { team: "RR",   m: 5, w: 1, l: 4, pts: 2 },
-    { team: "LSG",  m: 5, w: 0, l: 5, pts: 0 },
+    { team: "SRH",  m: 0, w: 0, l: 0, pts: 0 },
+    { team: "RCB",  m: 0, w: 0, l: 0, pts: 0 },
+    { team: "KKR",  m: 0, w: 0, l: 0, pts: 0 },
+    { team: "MI",   m: 0, w: 0, l: 0, pts: 0 },
+    { team: "CSK",  m: 0, w: 0, l: 0, pts: 0 },
+    { team: "GT",   m: 0, w: 0, l: 0, pts: 0 },
+    { team: "DC",   m: 0, w: 0, l: 0, pts: 0 },
+    { team: "PBKS", m: 0, w: 0, l: 0, pts: 0 },
+    { team: "RR",   m: 0, w: 0, l: 0, pts: 0 },
+    { team: "LSG",  m: 0, w: 0, l: 0, pts: 0 },
 ];
 
 // Dynamically generate PREDICTED_TABLE by taking the actual table
@@ -1309,7 +1330,27 @@ LOADED_MATCHES.slice(-5).forEach(m => {
 });
 
 // Re-sort predicted table by Points then Wins (since NRR is removed)
-PREDICTED_TABLE.sort((a, b) => b.pts - a.pts || b.w - a.w);
+LOADED_MATCHES.slice(-5).forEach(m => {
+    if (m.team1_wp != null && m.team2_wp != null) {
+        const predictedWinner = m.team1_wp >= m.team2_wp ? m.team1 : m.team2;
+        const predictedLoser   = m.team1_wp >= m.team2_wp ? m.team2 : m.team1;
+
+        const wRow = PREDICTED_TABLE.find(r => r.team === predictedWinner);
+        const lRow = PREDICTED_TABLE.find(r => r.team === predictedLoser);
+
+        if (wRow) { 
+            wRow.m += 1; 
+            wRow.w += 1; 
+            wRow.pts += 2; 
+        }
+        if (lRow) { 
+            lRow.m += 1; 
+            lRow.l += 1; 
+        }
+    }
+});
+
+PREDICTED_TABLE.sort((a, b) => b.pts - a.pts || b.w - a.w || a.team.localeCompare(b.team));
 
 function PointsTablePage() {
     return (

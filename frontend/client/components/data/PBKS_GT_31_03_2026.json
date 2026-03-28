@@ -4,36 +4,498 @@
     "time": "19:30 IST",
     "venue": "Maharaja Yadavindra Singh International Cricket Stadium",
     "weather": {
-      "temp": 30.0,
-      "humidity": 50.0,
+      "temp": 25.7,
+      "humidity": 56,
       "rain": 0.0
     }
   },
   "scenarios": {
     "PBKS_batting_first": {
       "match_id": "IPL2026_PBKS_v_GT_20260331",
-      "generated_at": "2026-03-26T17:30:21.855494",
+      "generated_at": "2026-03-27T13:34:33.124444",
       "inference_stage": "pre_toss",
       "predictions": {
         "first_innings": {
-          "point": 190,
-          "ci_low": 169,
+          "point": 196,
+          "ci_low": 171,
           "ci_high": 201,
           "ci_width": 31,
           "ci_risk": "medium"
         },
         "second_innings": {
-          "projected_score": "178/7",
-          "runs_point": 178,
+          "projected_score": "182/7",
+          "runs_point": 182,
           "wickets": 7,
-          "ci_low": 178,
-          "ci_high": 178,
+          "ci_low": 182,
+          "ci_high": 182,
           "ci_width": 0,
           "ci_risk": "low"
         },
         "win_probability": {
-          "team_1": 0.668,
-          "team_2": 0.332
+          "team_1": 0.672,
+          "team_2": 0.328
+        }
+      },
+      "toss_advantage_stats": {
+        "bat_first": {
+          "pct": 55,
+          "matches": 6
+        },
+        "field_first": {
+          "pct": 45,
+          "matches": 5
+        },
+        "sample_size": 11
+      },
+      "score_curve": {
+        "team_1_batting": [
+          {
+            "over": 1,
+            "projected_runs": 8,
+            "cumulative": 8,
+            "phase": "powerplay"
+          },
+          {
+            "over": 2,
+            "projected_runs": 9,
+            "cumulative": 17,
+            "phase": "powerplay"
+          },
+          {
+            "over": 3,
+            "projected_runs": 9,
+            "cumulative": 26,
+            "phase": "powerplay"
+          },
+          {
+            "over": 4,
+            "projected_runs": 10,
+            "cumulative": 36,
+            "phase": "powerplay"
+          },
+          {
+            "over": 5,
+            "projected_runs": 11,
+            "cumulative": 47,
+            "phase": "powerplay"
+          },
+          {
+            "over": 6,
+            "projected_runs": 11,
+            "cumulative": 58,
+            "phase": "powerplay"
+          },
+          {
+            "over": 7,
+            "projected_runs": 9,
+            "cumulative": 67,
+            "phase": "middle"
+          },
+          {
+            "over": 8,
+            "projected_runs": 9,
+            "cumulative": 76,
+            "phase": "middle"
+          },
+          {
+            "over": 9,
+            "projected_runs": 8,
+            "cumulative": 84,
+            "phase": "middle"
+          },
+          {
+            "over": 10,
+            "projected_runs": 8,
+            "cumulative": 92,
+            "phase": "middle"
+          },
+          {
+            "over": 11,
+            "projected_runs": 8,
+            "cumulative": 100,
+            "phase": "middle"
+          },
+          {
+            "over": 12,
+            "projected_runs": 9,
+            "cumulative": 109,
+            "phase": "middle"
+          },
+          {
+            "over": 13,
+            "projected_runs": 9,
+            "cumulative": 118,
+            "phase": "middle"
+          },
+          {
+            "over": 14,
+            "projected_runs": 9,
+            "cumulative": 127,
+            "phase": "middle"
+          },
+          {
+            "over": 15,
+            "projected_runs": 9,
+            "cumulative": 136,
+            "phase": "middle"
+          },
+          {
+            "over": 16,
+            "projected_runs": 11,
+            "cumulative": 147,
+            "phase": "death"
+          },
+          {
+            "over": 17,
+            "projected_runs": 11,
+            "cumulative": 158,
+            "phase": "death"
+          },
+          {
+            "over": 18,
+            "projected_runs": 12,
+            "cumulative": 170,
+            "phase": "death"
+          },
+          {
+            "over": 19,
+            "projected_runs": 13,
+            "cumulative": 183,
+            "phase": "death"
+          },
+          {
+            "over": 20,
+            "projected_runs": 14,
+            "cumulative": 197,
+            "phase": "death"
+          }
+        ],
+        "team_2_chasing": [
+          {
+            "over": 1,
+            "projected_runs": 7,
+            "cumulative": 7,
+            "phase": "powerplay"
+          },
+          {
+            "over": 2,
+            "projected_runs": 8,
+            "cumulative": 15,
+            "phase": "powerplay"
+          },
+          {
+            "over": 3,
+            "projected_runs": 9,
+            "cumulative": 24,
+            "phase": "powerplay"
+          },
+          {
+            "over": 4,
+            "projected_runs": 9,
+            "cumulative": 33,
+            "phase": "powerplay"
+          },
+          {
+            "over": 5,
+            "projected_runs": 10,
+            "cumulative": 43,
+            "phase": "powerplay"
+          },
+          {
+            "over": 6,
+            "projected_runs": 10,
+            "cumulative": 53,
+            "phase": "powerplay"
+          },
+          {
+            "over": 7,
+            "projected_runs": 8,
+            "cumulative": 61,
+            "phase": "middle"
+          },
+          {
+            "over": 8,
+            "projected_runs": 8,
+            "cumulative": 69,
+            "phase": "middle"
+          },
+          {
+            "over": 9,
+            "projected_runs": 8,
+            "cumulative": 77,
+            "phase": "middle"
+          },
+          {
+            "over": 10,
+            "projected_runs": 8,
+            "cumulative": 85,
+            "phase": "middle"
+          },
+          {
+            "over": 11,
+            "projected_runs": 8,
+            "cumulative": 93,
+            "phase": "middle"
+          },
+          {
+            "over": 12,
+            "projected_runs": 8,
+            "cumulative": 101,
+            "phase": "middle"
+          },
+          {
+            "over": 13,
+            "projected_runs": 8,
+            "cumulative": 109,
+            "phase": "middle"
+          },
+          {
+            "over": 14,
+            "projected_runs": 8,
+            "cumulative": 117,
+            "phase": "middle"
+          },
+          {
+            "over": 15,
+            "projected_runs": 9,
+            "cumulative": 126,
+            "phase": "middle"
+          },
+          {
+            "over": 16,
+            "projected_runs": 10,
+            "cumulative": 136,
+            "phase": "death"
+          },
+          {
+            "over": 17,
+            "projected_runs": 11,
+            "cumulative": 147,
+            "phase": "death"
+          },
+          {
+            "over": 18,
+            "projected_runs": 11,
+            "cumulative": 158,
+            "phase": "death"
+          },
+          {
+            "over": 19,
+            "projected_runs": 12,
+            "cumulative": 170,
+            "phase": "death"
+          },
+          {
+            "over": 20,
+            "projected_runs": 13,
+            "cumulative": 183,
+            "phase": "death"
+          }
+        ]
+      },
+      "danger_bowlers": {
+        "team_1_bowling": [
+          {
+            "player_id": "81049310",
+            "player_name": "J Yadav",
+            "danger_score": 1.114,
+            "ewma_economy": 6.62,
+            "suppression_sr": 117.7
+          },
+          {
+            "player_id": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "danger_score": 0.743,
+            "ewma_economy": 7.46,
+            "suppression_sr": 112.6
+          }
+        ],
+        "team_2_bowling": [
+          {
+            "player_id": "4b31f3a3",
+            "player_name": "Yash Thakur",
+            "danger_score": 0.5,
+            "ewma_economy": 8.0,
+            "suppression_sr": 130.0
+          },
+          {
+            "player_id": "57ee1fde",
+            "player_name": "YS Chahal",
+            "danger_score": 0.489,
+            "ewma_economy": 8.06,
+            "suppression_sr": 130.0
+          }
+        ]
+      },
+      "venue_history": [
+        {
+          "date": "2025-05-30",
+          "team1": "MI",
+          "team2": "GT",
+          "winner": "MI",
+          "s1": 228,
+          "s2": 208
+        },
+        {
+          "date": "2025-05-29",
+          "team1": "PBKS",
+          "team2": "RCB",
+          "winner": "RCB",
+          "s1": 101,
+          "s2": 106
+        },
+        {
+          "date": "2025-04-20",
+          "team1": "PBKS",
+          "team2": "RCB",
+          "winner": "RCB",
+          "s1": 157,
+          "s2": 159
+        },
+        {
+          "date": "2025-04-15",
+          "team1": "PBKS",
+          "team2": "KKR",
+          "winner": "PBKS",
+          "s1": 111,
+          "s2": 95
+        },
+        {
+          "date": "2025-04-08",
+          "team1": "PBKS",
+          "team2": "CSK",
+          "winner": "PBKS",
+          "s1": 219,
+          "s2": 201
+        }
+      ],
+      "rain_scenario": {
+        "rain_team1_wp": 0.729,
+        "delta_team1": 0.057,
+        "rain_favours": "team_1",
+        "rain_projected_score_i1": 184,
+        "rain_projected_score_i2": 171
+      },
+      "impact_player_recommendations": {
+        "team_1": {
+          "if_batting_first": {
+            "player": "b5797845",
+            "player_name": "Priyansh Arya",
+            "role": "batter",
+            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
+            "slot_score": 0.681
+          },
+          "if_fielding_first": {
+            "player": "ed5a5510",
+            "player_name": "P Dubey",
+            "role": "batter",
+            "reason": "Best bowling matchup vs opposition batters.",
+            "slot_score": 0.5
+          }
+        },
+        "team_2": {
+          "if_batting_first": {
+            "player": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "role": "bowler",
+            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
+            "slot_score": 0.656
+          },
+          "if_fielding_first": {
+            "player": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "role": "bowler",
+            "reason": "Best bowling matchup vs opposition batters.",
+            "slot_score": 0.5
+          }
+        }
+      },
+      "debutants_flagged": [
+        "Yash Thakur"
+      ],
+      "model_confidence": {
+        "m1_mae_val": 29.508,
+        "m1_mae_test": 31.239,
+        "m2_mae_val": 23.457,
+        "m2_mae_test": 24.312,
+        "m3_logloss_val": 0.3421,
+        "m3_brier_val": 0.108,
+        "m3_logloss_test": 0.3976,
+        "m3_brier_test": 0.1364
+      },
+      "insights": [
+        {
+          "team_ref": "team_1",
+          "type": "H2H_ALERT",
+          "text": "YS Chahal strikes at 65 vs Rashid Khan over 31 balls (career mean 42).",
+          "strength_score": 0.9993,
+          "supporting_data": {
+            "batter_id": "57ee1fde",
+            "bowler_id": "5f547c8b",
+            "balls_faced": 31,
+            "h2h_sr": 64.5,
+            "player_mean_sr": 41.6
+          }
+        },
+        {
+          "team_ref": "team_1",
+          "type": "H2H_ALERT",
+          "text": "YS Chahal strikes at 65 vs K Rabada over 31 balls (career mean 42).",
+          "strength_score": 0.9993,
+          "supporting_data": {
+            "batter_id": "57ee1fde",
+            "bowler_id": "e62dd25d",
+            "balls_faced": 31,
+            "h2h_sr": 64.5,
+            "player_mean_sr": 41.6
+          }
+        },
+        {
+          "team_ref": "team_2",
+          "type": "VENUE_PLAYER_TREND",
+          "text": "Washington Sundar SR 192 at Maharaja Yadavindra Singh International Cricket Stadium vs career 120 (25 balls).",
+          "strength_score": 0.9808,
+          "supporting_data": {
+            "player_id": "f19ccfad",
+            "venue_sr": 192.0
+          }
+        },
+        {
+          "team_ref": "team_2",
+          "type": "VENUE_PLAYER_TREND",
+          "text": "R Tewatia SR 173 at Maharaja Yadavindra Singh International Cricket Stadium vs career 131 (30 balls).",
+          "strength_score": 0.9064,
+          "supporting_data": {
+            "player_id": "39a2dfa8",
+            "venue_sr": 173.3
+          }
+        }
+      ]
+    },
+    "GT_batting_first": {
+      "match_id": "IPL2026_PBKS_v_GT_20260331",
+      "generated_at": "2026-03-27T13:35:40.501021",
+      "inference_stage": "pre_toss",
+      "predictions": {
+        "first_innings": {
+          "point": 187,
+          "ci_low": 185,
+          "ci_high": 193,
+          "ci_width": 8,
+          "ci_risk": "low"
+        },
+        "second_innings": {
+          "projected_score": "178/6",
+          "runs_point": 178,
+          "wickets": 6,
+          "ci_low": 170,
+          "ci_high": 178,
+          "ci_width": 8,
+          "ci_risk": "low"
+        },
+        "win_probability": {
+          "team_1": 0.156,
+          "team_2": 0.844
         }
       },
       "toss_advantage_stats": {
@@ -81,92 +543,92 @@
           },
           {
             "over": 6,
-            "projected_runs": 11,
-            "cumulative": 55,
+            "projected_runs": 10,
+            "cumulative": 54,
             "phase": "powerplay"
           },
           {
             "over": 7,
             "projected_runs": 8,
-            "cumulative": 63,
+            "cumulative": 62,
             "phase": "middle"
           },
           {
             "over": 8,
             "projected_runs": 8,
-            "cumulative": 71,
+            "cumulative": 70,
             "phase": "middle"
           },
           {
             "over": 9,
             "projected_runs": 8,
-            "cumulative": 79,
+            "cumulative": 78,
             "phase": "middle"
           },
           {
             "over": 10,
             "projected_runs": 8,
-            "cumulative": 87,
+            "cumulative": 86,
             "phase": "middle"
           },
           {
             "over": 11,
             "projected_runs": 8,
-            "cumulative": 95,
+            "cumulative": 94,
             "phase": "middle"
           },
           {
             "over": 12,
             "projected_runs": 8,
-            "cumulative": 103,
+            "cumulative": 102,
             "phase": "middle"
           },
           {
             "over": 13,
             "projected_runs": 8,
-            "cumulative": 111,
+            "cumulative": 110,
             "phase": "middle"
           },
           {
             "over": 14,
             "projected_runs": 9,
-            "cumulative": 120,
+            "cumulative": 119,
             "phase": "middle"
           },
           {
             "over": 15,
             "projected_runs": 9,
-            "cumulative": 129,
+            "cumulative": 128,
             "phase": "middle"
           },
           {
             "over": 16,
             "projected_runs": 10,
-            "cumulative": 139,
+            "cumulative": 138,
             "phase": "death"
           },
           {
             "over": 17,
             "projected_runs": 11,
-            "cumulative": 150,
+            "cumulative": 149,
             "phase": "death"
           },
           {
             "over": 18,
-            "projected_runs": 12,
-            "cumulative": 162,
+            "projected_runs": 11,
+            "cumulative": 160,
             "phase": "death"
           },
           {
             "over": 19,
             "projected_runs": 12,
-            "cumulative": 174,
+            "cumulative": 172,
             "phase": "death"
           },
           {
             "over": 20,
             "projected_runs": 13,
-            "cumulative": 187,
+            "cumulative": 185,
             "phase": "death"
           }
         ],
@@ -296,33 +758,33 @@
       "danger_bowlers": {
         "team_1_bowling": [
           {
-            "player_id": "81049310",
-            "player_name": "J Yadav",
-            "danger_score": 1.379,
-            "ewma_economy": 6.62,
-            "suppression_sr": 117.7
+            "player_id": "57ee1fde",
+            "player_name": "YS Chahal",
+            "danger_score": 0.724,
+            "ewma_economy": 8.06,
+            "suppression_sr": 106.5
           },
           {
-            "player_id": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "danger_score": 1.008,
-            "ewma_economy": 7.46,
-            "suppression_sr": 112.6
+            "player_id": "c05edf8e",
+            "player_name": "Harpreet Brar",
+            "danger_score": 0.598,
+            "ewma_economy": 8.37,
+            "suppression_sr": 105.4
           }
         ],
         "team_2_bowling": [
           {
-            "player_id": "85ec8e33",
-            "player_name": "SS Iyer",
-            "danger_score": 0.99,
-            "ewma_economy": 7.0,
+            "player_id": "81049310",
+            "player_name": "J Yadav",
+            "danger_score": 0.991,
+            "ewma_economy": 6.62,
             "suppression_sr": 130.0
           },
           {
-            "player_id": "9418198b",
-            "player_name": "P Simran Singh",
-            "danger_score": 0.378,
-            "ewma_economy": 8.0,
+            "player_id": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "danger_score": 0.568,
+            "ewma_economy": 7.46,
             "suppression_sr": 130.0
           }
         ]
@@ -370,505 +832,43 @@
         }
       ],
       "rain_scenario": {
-        "rain_team1_wp": 0.728,
-        "delta_team1": 0.06,
+        "rain_team1_wp": 0.353,
+        "delta_team1": 0.197,
         "rain_favours": "team_1",
-        "rain_projected_score_i1": 177,
-        "rain_projected_score_i2": 165
+        "rain_projected_score_i1": 189,
+        "rain_projected_score_i2": 178
       },
       "impact_player_recommendations": {
         "team_1": {
+          "if_batting_first": {
+            "player": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "role": "bowler",
+            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
+            "slot_score": 0.656
+          },
+          "if_fielding_first": {
+            "player": "5f547c8b",
+            "player_name": "Rashid Khan",
+            "role": "bowler",
+            "reason": "Best bowling matchup vs opposition batters.",
+            "slot_score": 0.5
+          }
+        },
+        "team_2": {
           "if_batting_first": {
             "player": "b5797845",
             "player_name": "Priyansh Arya",
             "role": "batter",
             "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.693
+            "slot_score": 0.681
           },
           "if_fielding_first": {
-            "player": "85ec8e33",
-            "player_name": "SS Iyer",
-            "role": "bowler",
-            "reason": "Best bowling matchup vs opposition batters.",
-            "slot_score": 0.5
-          }
-        },
-        "team_2": {
-          "if_batting_first": {
-            "player": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "role": "bowler",
-            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.5
-          },
-          "if_fielding_first": {
-            "player": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "role": "bowler",
-            "reason": "Best bowling matchup vs opposition batters.",
-            "slot_score": 0.527
-          }
-        }
-      },
-      "debutants_flagged": [
-        "Yash Thakur"
-      ],
-      "model_confidence": {
-        "m1_mae_val": 29.508,
-        "m1_mae_test": 31.239,
-        "m2_mae_val": 23.457,
-        "m2_mae_test": 24.312,
-        "m3_logloss_val": 0.3421,
-        "m3_brier_val": 0.108,
-        "m3_logloss_test": 0.3976,
-        "m3_brier_test": 0.1364
-      },
-      "insights": [
-        {
-          "team_ref": "team_1",
-          "type": "H2H_ALERT",
-          "text": "YS Chahal strikes at 65 vs Rashid Khan over 31 balls (career mean 42).",
-          "strength_score": 0.9993,
-          "supporting_data": {
-            "batter_id": "57ee1fde",
-            "bowler_id": "5f547c8b",
-            "balls_faced": 31,
-            "h2h_sr": 64.5,
-            "player_mean_sr": 41.6
-          }
-        },
-        {
-          "team_ref": "team_1",
-          "type": "H2H_ALERT",
-          "text": "YS Chahal strikes at 65 vs K Rabada over 31 balls (career mean 42).",
-          "strength_score": 0.9993,
-          "supporting_data": {
-            "batter_id": "57ee1fde",
-            "bowler_id": "e62dd25d",
-            "balls_faced": 31,
-            "h2h_sr": 64.5,
-            "player_mean_sr": 41.6
-          }
-        },
-        {
-          "team_ref": "team_2",
-          "type": "VENUE_PLAYER_TREND",
-          "text": "Washington Sundar SR 192 at Maharaja Yadavindra Singh International Cricket Stadium vs career 120 (25 balls).",
-          "strength_score": 0.9808,
-          "supporting_data": {
-            "player_id": "f19ccfad",
-            "venue_sr": 192.0
-          }
-        },
-        {
-          "team_ref": "team_2",
-          "type": "VENUE_PLAYER_TREND",
-          "text": "R Tewatia SR 173 at Maharaja Yadavindra Singh International Cricket Stadium vs career 131 (30 balls).",
-          "strength_score": 0.9064,
-          "supporting_data": {
-            "player_id": "39a2dfa8",
-            "venue_sr": 173.3
-          }
-        }
-      ]
-    },
-    "GT_batting_first": {
-      "match_id": "IPL2026_PBKS_v_GT_20260331",
-      "generated_at": "2026-03-26T17:31:31.938817",
-      "inference_stage": "pre_toss",
-      "predictions": {
-        "first_innings": {
-          "point": 184,
-          "ci_low": 181,
-          "ci_high": 196,
-          "ci_width": 15,
-          "ci_risk": "low"
-        },
-        "second_innings": {
-          "projected_score": "173/6",
-          "runs_point": 173,
-          "wickets": 6,
-          "ci_low": 167,
-          "ci_high": 176,
-          "ci_width": 9,
-          "ci_risk": "low"
-        },
-        "win_probability": {
-          "team_1": 0.419,
-          "team_2": 0.581
-        }
-      },
-      "toss_advantage_stats": {
-        "bat_first": {
-          "pct": 55,
-          "matches": 6
-        },
-        "field_first": {
-          "pct": 45,
-          "matches": 5
-        },
-        "sample_size": 11
-      },
-      "score_curve": {
-        "team_1_batting": [
-          {
-            "over": 1,
-            "projected_runs": 7,
-            "cumulative": 7,
-            "phase": "powerplay"
-          },
-          {
-            "over": 2,
-            "projected_runs": 8,
-            "cumulative": 15,
-            "phase": "powerplay"
-          },
-          {
-            "over": 3,
-            "projected_runs": 9,
-            "cumulative": 24,
-            "phase": "powerplay"
-          },
-          {
-            "over": 4,
-            "projected_runs": 9,
-            "cumulative": 33,
-            "phase": "powerplay"
-          },
-          {
-            "over": 5,
-            "projected_runs": 10,
-            "cumulative": 43,
-            "phase": "powerplay"
-          },
-          {
-            "over": 6,
-            "projected_runs": 10,
-            "cumulative": 53,
-            "phase": "powerplay"
-          },
-          {
-            "over": 7,
-            "projected_runs": 8,
-            "cumulative": 61,
-            "phase": "middle"
-          },
-          {
-            "over": 8,
-            "projected_runs": 8,
-            "cumulative": 69,
-            "phase": "middle"
-          },
-          {
-            "over": 9,
-            "projected_runs": 8,
-            "cumulative": 77,
-            "phase": "middle"
-          },
-          {
-            "over": 10,
-            "projected_runs": 8,
-            "cumulative": 85,
-            "phase": "middle"
-          },
-          {
-            "over": 11,
-            "projected_runs": 8,
-            "cumulative": 93,
-            "phase": "middle"
-          },
-          {
-            "over": 12,
-            "projected_runs": 8,
-            "cumulative": 101,
-            "phase": "middle"
-          },
-          {
-            "over": 13,
-            "projected_runs": 8,
-            "cumulative": 109,
-            "phase": "middle"
-          },
-          {
-            "over": 14,
-            "projected_runs": 9,
-            "cumulative": 118,
-            "phase": "middle"
-          },
-          {
-            "over": 15,
-            "projected_runs": 9,
-            "cumulative": 127,
-            "phase": "middle"
-          },
-          {
-            "over": 16,
-            "projected_runs": 10,
-            "cumulative": 137,
-            "phase": "death"
-          },
-          {
-            "over": 17,
-            "projected_runs": 11,
-            "cumulative": 148,
-            "phase": "death"
-          },
-          {
-            "over": 18,
-            "projected_runs": 11,
-            "cumulative": 159,
-            "phase": "death"
-          },
-          {
-            "over": 19,
-            "projected_runs": 12,
-            "cumulative": 171,
-            "phase": "death"
-          },
-          {
-            "over": 20,
-            "projected_runs": 13,
-            "cumulative": 184,
-            "phase": "death"
-          }
-        ],
-        "team_2_chasing": [
-          {
-            "over": 1,
-            "projected_runs": 7,
-            "cumulative": 7,
-            "phase": "powerplay"
-          },
-          {
-            "over": 2,
-            "projected_runs": 8,
-            "cumulative": 15,
-            "phase": "powerplay"
-          },
-          {
-            "over": 3,
-            "projected_runs": 8,
-            "cumulative": 23,
-            "phase": "powerplay"
-          },
-          {
-            "over": 4,
-            "projected_runs": 9,
-            "cumulative": 32,
-            "phase": "powerplay"
-          },
-          {
-            "over": 5,
-            "projected_runs": 9,
-            "cumulative": 41,
-            "phase": "powerplay"
-          },
-          {
-            "over": 6,
-            "projected_runs": 10,
-            "cumulative": 51,
-            "phase": "powerplay"
-          },
-          {
-            "over": 7,
-            "projected_runs": 8,
-            "cumulative": 59,
-            "phase": "middle"
-          },
-          {
-            "over": 8,
-            "projected_runs": 8,
-            "cumulative": 67,
-            "phase": "middle"
-          },
-          {
-            "over": 9,
-            "projected_runs": 7,
-            "cumulative": 74,
-            "phase": "middle"
-          },
-          {
-            "over": 10,
-            "projected_runs": 7,
-            "cumulative": 81,
-            "phase": "middle"
-          },
-          {
-            "over": 11,
-            "projected_runs": 7,
-            "cumulative": 88,
-            "phase": "middle"
-          },
-          {
-            "over": 12,
-            "projected_runs": 8,
-            "cumulative": 96,
-            "phase": "middle"
-          },
-          {
-            "over": 13,
-            "projected_runs": 8,
-            "cumulative": 104,
-            "phase": "middle"
-          },
-          {
-            "over": 14,
-            "projected_runs": 8,
-            "cumulative": 112,
-            "phase": "middle"
-          },
-          {
-            "over": 15,
-            "projected_runs": 8,
-            "cumulative": 120,
-            "phase": "middle"
-          },
-          {
-            "over": 16,
-            "projected_runs": 9,
-            "cumulative": 129,
-            "phase": "death"
-          },
-          {
-            "over": 17,
-            "projected_runs": 10,
-            "cumulative": 139,
-            "phase": "death"
-          },
-          {
-            "over": 18,
-            "projected_runs": 11,
-            "cumulative": 150,
-            "phase": "death"
-          },
-          {
-            "over": 19,
-            "projected_runs": 11,
-            "cumulative": 161,
-            "phase": "death"
-          },
-          {
-            "over": 20,
-            "projected_runs": 12,
-            "cumulative": 173,
-            "phase": "death"
-          }
-        ]
-      },
-      "danger_bowlers": {
-        "team_1_bowling": [
-          {
-            "player_id": "85ec8e33",
-            "player_name": "SS Iyer",
-            "danger_score": 1.078,
-            "ewma_economy": 7.0,
-            "suppression_sr": 121.2
-          },
-          {
-            "player_id": "57ee1fde",
-            "player_name": "YS Chahal",
-            "danger_score": 0.602,
-            "ewma_economy": 8.06,
-            "suppression_sr": 106.5
-          }
-        ],
-        "team_2_bowling": [
-          {
-            "player_id": "81049310",
-            "player_name": "J Yadav",
-            "danger_score": 1.256,
-            "ewma_economy": 6.62,
-            "suppression_sr": 130.0
-          },
-          {
-            "player_id": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "danger_score": 0.834,
-            "ewma_economy": 7.46,
-            "suppression_sr": 130.0
-          }
-        ]
-      },
-      "venue_history": [
-        {
-          "date": "2025-05-30",
-          "team1": "MI",
-          "team2": "GT",
-          "winner": "MI",
-          "s1": 228,
-          "s2": 208
-        },
-        {
-          "date": "2025-05-29",
-          "team1": "PBKS",
-          "team2": "RCB",
-          "winner": "RCB",
-          "s1": 101,
-          "s2": 106
-        },
-        {
-          "date": "2025-04-20",
-          "team1": "PBKS",
-          "team2": "RCB",
-          "winner": "RCB",
-          "s1": 157,
-          "s2": 159
-        },
-        {
-          "date": "2025-04-15",
-          "team1": "PBKS",
-          "team2": "KKR",
-          "winner": "PBKS",
-          "s1": 111,
-          "s2": 95
-        },
-        {
-          "date": "2025-04-08",
-          "team1": "PBKS",
-          "team2": "CSK",
-          "winner": "PBKS",
-          "s1": 219,
-          "s2": 201
-        }
-      ],
-      "rain_scenario": {
-        "rain_team1_wp": 0.484,
-        "delta_team1": 0.065,
-        "rain_favours": "team_1",
-        "rain_projected_score_i1": 182,
-        "rain_projected_score_i2": 173
-      },
-      "impact_player_recommendations": {
-        "team_1": {
-          "if_batting_first": {
-            "player": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "role": "bowler",
-            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.655
-          },
-          "if_fielding_first": {
-            "player": "5f547c8b",
-            "player_name": "Rashid Khan",
-            "role": "bowler",
-            "reason": "Best bowling matchup vs opposition batters.",
-            "slot_score": 0.5
-          }
-        },
-        "team_2": {
-          "if_batting_first": {
-            "player": "57ee1fde",
-            "player_name": "YS Chahal",
+            "player": "ed5a5510",
+            "player_name": "P Dubey",
             "role": "batter",
-            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.5
-          },
-          "if_fielding_first": {
-            "player": "85ec8e33",
-            "player_name": "SS Iyer",
-            "role": "bowler",
             "reason": "Best bowling matchup vs opposition batters.",
-            "slot_score": 0.467
+            "slot_score": 0.5
           }
         }
       },

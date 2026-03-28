@@ -4,7 +4,7 @@
     "time": "19:30 IST",
     "venue": "Wankhede Stadium",
     "weather": {
-      "temp": 27.9,
+      "temp": 27.8,
       "humidity": 82,
       "rain": 0.0
     }
@@ -12,7 +12,7 @@
   "scenarios": {
     "MI_batting_first": {
       "match_id": "IPL2026_MI_v_KKR_20260329",
-      "generated_at": "2026-03-26T14:33:02.050717",
+      "generated_at": "2026-03-27T12:56:38.078698",
       "inference_stage": "pre_toss",
       "predictions": {
         "first_innings": {
@@ -296,33 +296,33 @@
       "danger_bowlers": {
         "team_1_bowling": [
           {
-            "player_id": "ba5e1069",
-            "player_name": "R Ravindra",
-            "danger_score": 2.617,
-            "ewma_economy": 3.5,
-            "suppression_sr": 127.8
+            "player_id": "9d430b40",
+            "player_name": "SP Narine",
+            "danger_score": 1.257,
+            "ewma_economy": 6.81,
+            "suppression_sr": 119.9
           },
           {
-            "player_id": "29e95537",
-            "player_name": "AM Rahane",
-            "danger_score": 1.845,
-            "ewma_economy": 5.0,
-            "suppression_sr": 130.0
+            "player_id": "5b7ab5a9",
+            "player_name": "CV Varun",
+            "danger_score": 0.811,
+            "ewma_economy": 7.73,
+            "suppression_sr": 119.4
           }
         ],
         "team_2_bowling": [
           {
-            "player_id": "d014d5ac",
-            "player_name": "SE Rutherford",
-            "danger_score": 0.782,
-            "ewma_economy": 7.23,
+            "player_id": "462411b3",
+            "player_name": "JJ Bumrah",
+            "danger_score": 0.707,
+            "ewma_economy": 7.24,
             "suppression_sr": 130.0
           },
           {
-            "player_id": "462411b3",
-            "player_name": "JJ Bumrah",
-            "danger_score": 0.694,
-            "ewma_economy": 7.24,
+            "player_id": "e4a0deae",
+            "player_name": "MJ Santner",
+            "danger_score": 0.579,
+            "ewma_economy": 7.51,
             "suppression_sr": 130.0
           }
         ]
@@ -373,8 +373,8 @@
         "rain_team1_wp": 0.698,
         "delta_team1": -0.067,
         "rain_favours": "team_2",
-        "rain_projected_score_i1": 161,
-        "rain_projected_score_i2": 147
+        "rain_projected_score_i1": 158,
+        "rain_projected_score_i2": 149
       },
       "impact_player_recommendations": {
         "team_1": {
@@ -383,7 +383,7 @@
             "player_name": "Naman Dhir",
             "role": "batter",
             "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.683
+            "slot_score": 0.68
           },
           "if_fielding_first": {
             "player": "462411b3",
@@ -395,18 +395,18 @@
         },
         "team_2": {
           "if_batting_first": {
+            "player": "0a67aec0",
+            "player_name": "Akash Deep",
+            "role": "batter",
+            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
+            "slot_score": 0.681
+          },
+          "if_fielding_first": {
             "player": "9d430b40",
             "player_name": "SP Narine",
             "role": "bowler",
-            "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.5
-          },
-          "if_fielding_first": {
-            "player": "5b7ab5a9",
-            "player_name": "CV Varun",
-            "role": "bowler",
             "reason": "Best bowling matchup vs opposition batters + dew advantage.",
-            "slot_score": 0.752
+            "slot_score": 0.7
           }
         }
       },
@@ -480,28 +480,28 @@
     },
     "KKR_batting_first": {
       "match_id": "IPL2026_MI_v_KKR_20260329",
-      "generated_at": "2026-03-26T14:34:23.871625",
+      "generated_at": "2026-03-27T12:57:41.061827",
       "inference_stage": "pre_toss",
       "predictions": {
         "first_innings": {
-          "point": 172,
-          "ci_low": 170,
+          "point": 169,
+          "ci_low": 169,
           "ci_high": 186,
-          "ci_width": 16,
+          "ci_width": 17,
           "ci_risk": "low"
         },
         "second_innings": {
-          "projected_score": "160/6",
-          "runs_point": 160,
-          "wickets": 6,
-          "ci_low": 160,
-          "ci_high": 161,
+          "projected_score": "157/7",
+          "runs_point": 157,
+          "wickets": 7,
+          "ci_low": 157,
+          "ci_high": 158,
           "ci_width": 1,
           "ci_risk": "low"
         },
         "win_probability": {
-          "team_1": 0.387,
-          "team_2": 0.613
+          "team_1": 0.737,
+          "team_2": 0.263
         }
       },
       "toss_advantage_stats": {
@@ -549,92 +549,92 @@
           },
           {
             "over": 6,
-            "projected_runs": 10,
-            "cumulative": 51,
+            "projected_runs": 9,
+            "cumulative": 50,
             "phase": "powerplay"
           },
           {
             "over": 7,
             "projected_runs": 8,
-            "cumulative": 59,
+            "cumulative": 58,
             "phase": "middle"
           },
           {
             "over": 8,
-            "projected_runs": 8,
-            "cumulative": 67,
+            "projected_runs": 7,
+            "cumulative": 65,
             "phase": "middle"
           },
           {
             "over": 9,
             "projected_runs": 7,
-            "cumulative": 74,
+            "cumulative": 72,
             "phase": "middle"
           },
           {
             "over": 10,
             "projected_runs": 7,
-            "cumulative": 81,
+            "cumulative": 79,
             "phase": "middle"
           },
           {
             "over": 11,
             "projected_runs": 7,
-            "cumulative": 88,
+            "cumulative": 86,
             "phase": "middle"
           },
           {
             "over": 12,
-            "projected_runs": 8,
-            "cumulative": 96,
+            "projected_runs": 7,
+            "cumulative": 93,
             "phase": "middle"
           },
           {
             "over": 13,
             "projected_runs": 8,
-            "cumulative": 104,
+            "cumulative": 101,
             "phase": "middle"
           },
           {
             "over": 14,
             "projected_runs": 8,
-            "cumulative": 112,
+            "cumulative": 109,
             "phase": "middle"
           },
           {
             "over": 15,
             "projected_runs": 8,
-            "cumulative": 120,
+            "cumulative": 117,
             "phase": "middle"
           },
           {
             "over": 16,
             "projected_runs": 9,
-            "cumulative": 129,
+            "cumulative": 126,
             "phase": "death"
           },
           {
             "over": 17,
             "projected_runs": 10,
-            "cumulative": 139,
+            "cumulative": 136,
             "phase": "death"
           },
           {
             "over": 18,
-            "projected_runs": 11,
-            "cumulative": 150,
+            "projected_runs": 10,
+            "cumulative": 146,
             "phase": "death"
           },
           {
             "over": 19,
             "projected_runs": 11,
-            "cumulative": 161,
+            "cumulative": 157,
             "phase": "death"
           },
           {
             "over": 20,
             "projected_runs": 12,
-            "cumulative": 173,
+            "cumulative": 169,
             "phase": "death"
           }
         ],
@@ -665,98 +665,98 @@
           },
           {
             "over": 5,
-            "projected_runs": 9,
-            "cumulative": 38,
+            "projected_runs": 8,
+            "cumulative": 37,
             "phase": "powerplay"
           },
           {
             "over": 6,
             "projected_runs": 9,
-            "cumulative": 47,
+            "cumulative": 46,
             "phase": "powerplay"
           },
           {
             "over": 7,
             "projected_runs": 7,
-            "cumulative": 54,
+            "cumulative": 53,
             "phase": "middle"
           },
           {
             "over": 8,
             "projected_runs": 7,
-            "cumulative": 61,
+            "cumulative": 60,
             "phase": "middle"
           },
           {
             "over": 9,
             "projected_runs": 7,
-            "cumulative": 68,
+            "cumulative": 67,
             "phase": "middle"
           },
           {
             "over": 10,
             "projected_runs": 7,
-            "cumulative": 75,
+            "cumulative": 74,
             "phase": "middle"
           },
           {
             "over": 11,
             "projected_runs": 7,
-            "cumulative": 82,
+            "cumulative": 81,
             "phase": "middle"
           },
           {
             "over": 12,
             "projected_runs": 7,
-            "cumulative": 89,
+            "cumulative": 88,
             "phase": "middle"
           },
           {
             "over": 13,
             "projected_runs": 7,
-            "cumulative": 96,
+            "cumulative": 95,
             "phase": "middle"
           },
           {
             "over": 14,
             "projected_runs": 7,
-            "cumulative": 103,
+            "cumulative": 102,
             "phase": "middle"
           },
           {
             "over": 15,
             "projected_runs": 8,
-            "cumulative": 111,
+            "cumulative": 110,
             "phase": "middle"
           },
           {
             "over": 16,
-            "projected_runs": 9,
-            "cumulative": 120,
+            "projected_runs": 8,
+            "cumulative": 118,
             "phase": "death"
           },
           {
             "over": 17,
             "projected_runs": 9,
-            "cumulative": 129,
+            "cumulative": 127,
             "phase": "death"
           },
           {
             "over": 18,
             "projected_runs": 10,
-            "cumulative": 139,
+            "cumulative": 137,
             "phase": "death"
           },
           {
             "over": 19,
             "projected_runs": 10,
-            "cumulative": 149,
+            "cumulative": 147,
             "phase": "death"
           },
           {
             "over": 20,
             "projected_runs": 11,
-            "cumulative": 160,
+            "cumulative": 158,
             "phase": "death"
           }
         ]
@@ -764,33 +764,33 @@
       "danger_bowlers": {
         "team_1_bowling": [
           {
-            "player_id": "d014d5ac",
-            "player_name": "SE Rutherford",
-            "danger_score": 0.873,
-            "ewma_economy": 7.23,
-            "suppression_sr": 120.9
-          },
-          {
             "player_id": "462411b3",
             "player_name": "JJ Bumrah",
-            "danger_score": 0.721,
+            "danger_score": 0.734,
             "ewma_economy": 7.24,
             "suppression_sr": 127.3
+          },
+          {
+            "player_id": "e4a0deae",
+            "player_name": "MJ Santner",
+            "danger_score": 0.658,
+            "ewma_economy": 7.51,
+            "suppression_sr": 122.1
           }
         ],
         "team_2_bowling": [
           {
-            "player_id": "ba5e1069",
-            "player_name": "R Ravindra",
-            "danger_score": 2.595,
-            "ewma_economy": 3.5,
+            "player_id": "9d430b40",
+            "player_name": "SP Narine",
+            "danger_score": 1.156,
+            "ewma_economy": 6.81,
             "suppression_sr": 130.0
           },
           {
-            "player_id": "29e95537",
-            "player_name": "AM Rahane",
-            "danger_score": 1.845,
-            "ewma_economy": 5.0,
+            "player_id": "5b7ab5a9",
+            "player_name": "CV Varun",
+            "danger_score": 0.705,
+            "ewma_economy": 7.73,
             "suppression_sr": 130.0
           }
         ]
@@ -838,8 +838,8 @@
         }
       ],
       "rain_scenario": {
-        "rain_team1_wp": 0.354,
-        "delta_team1": -0.033,
+        "rain_team1_wp": 0.688,
+        "delta_team1": -0.049,
         "rain_favours": "team_2",
         "rain_projected_score_i1": 161,
         "rain_projected_score_i2": 148
@@ -851,7 +851,7 @@
             "player_name": "Akash Deep",
             "role": "batter",
             "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.684
+            "slot_score": 0.681
           },
           "if_fielding_first": {
             "player": "9d430b40",
@@ -863,18 +863,18 @@
         },
         "team_2": {
           "if_batting_first": {
-            "player": "740742ef",
-            "player_name": "RG Sharma",
+            "player": "fffa744b",
+            "player_name": "Naman Dhir",
             "role": "batter",
             "reason": "Best matchup vs opposition bowlers at venue avg 160.",
-            "slot_score": 0.5
+            "slot_score": 0.68
           },
           "if_fielding_first": {
-            "player": "b0482a1d",
-            "player_name": "Tilak Varma",
-            "role": "allrounder",
+            "player": "462411b3",
+            "player_name": "JJ Bumrah",
+            "role": "bowler",
             "reason": "Best bowling matchup vs opposition batters + dew advantage.",
-            "slot_score": 0.703
+            "slot_score": 0.7
           }
         }
       },
